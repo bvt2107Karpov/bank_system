@@ -39,10 +39,9 @@ def reg():
                 cursor = sqlite_connection.cursor()
                 cursor.execute("""
                                     CREATE TABLE IF NOT EXISTS registration (
-                                        name TEXT,
-                                        address TEXT,
-                                        acc_no INTEGER,
-                                        balance REAL
+                                        mail TEXT PRIMARY KEY,
+                                        code INTEGER,
+                                        user_code INTEGER
                                     )
                                     """)
                 cursor.execute("INSERT INTO registration VALUES (?, ?, ?)", (email, code, user_code))
