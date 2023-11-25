@@ -15,7 +15,15 @@ def reg():
 
         code_confirm.send_email_code(email, code)
 
-        
+        with sqlite3.connect('bank.db') as sqlite_connection:
+            cursor = sqlite_connection.cursor()
+            cursor.execute("""
+                        CREATE TABLE IF NOT EXISTS registration (
+                            mail TEXT PRIMARY KEY,
+                            code INTEGER
+                        )
+                        """)
+            cursor.execute("INSERT INTO registration VALUES (?, ?)", (email, code))
 
         conf = ctk.CTk()
         conf.title("Bank")
@@ -29,43 +37,26 @@ def reg():
         user_code = ctk.CTkEntry(master=conf,placeholder_text="Your code") 
         user_code.pack(pady=12,padx=10)
 
-        user_code_confirm = ctk.CTkButton(master=conf, text='Confirm', command=acc_confirm)
+        user_code_confirm = ctk.CTkButton(master=conf, text='Confirm', command=lambda: acc_confirm(email, user_code.get()))
         user_code_confirm.pack(pady=12,padx=10)
 
         conf.mainloop()
 
-        try:
-            with sqlite3.connect('bank.db') as sqlite_connection:
-                cursor = sqlite_connection.cursor()
-                cursor.execute("""
-                                    CREATE TABLE IF NOT EXISTS registration (
-                                        mail TEXT PRIMARY KEY,
-                                        code INTEGER,
-                                        user_code INTEGER
-                                    )
-                                    """)
-                cursor.execute("INSERT INTO registration VALUES (?, ?, ?)", (email, code, user_code))
-                sqlite_connection.commit()
-
-        except Exception as e:
-            tkmb.showerror("Error", str(e))
-
-
+        return user_code
 
         
 
-    def acc_confirm():
+    def acc_confirm(user_email, user_code):
+        
         sqlite_connection = sqlite3.connect('bank.db')
         cursor = sqlite_connection.cursor()
-        cursor.execute("SELECT code_conf FROM registration WHERE mail=?", (user_email))
+        cursor.execute("SELECT code FROM registration WHERE mail=?", (user_email,))
         code_conf1 = cursor.fetchone()
-        cursor.execute("SELECT user_code FROM registration WHERE mail=?", (user_email))
-        user_code1 = cursor.fetchone()
 
-        if code_conf1 == user_code1:
+        if int(code_conf1[0]) == int(user_code):
             print('победа')
         else:
-            print(':(')
+            print(':(', user_code, int(code_conf1[0]))
 
     def card_number_generate():
         card_num = "2202" + str(random.randint(1000000000000, 999999999999)) 
@@ -89,5 +80,7 @@ def reg():
 
     root.mainloop()
 
+
+reg()
 
 
