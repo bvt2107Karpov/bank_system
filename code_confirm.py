@@ -5,8 +5,8 @@ import random
 import sqlite3
 
 def send_email_code(dest_email, code):
-    email = 'forfaceit1441@yandex.ru'
-    password = 'EmiSSionS228!'
+    email = 'email'
+    password = 'password'
     subject = 'Your Code is'
     email_text = code
     message = 'From: {}\nTo: {}\nSubject: {}\n\n{}'.format(email,

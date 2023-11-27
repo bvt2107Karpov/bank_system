@@ -1,7 +1,20 @@
-import code_confirm
-import random
+class ClassA:
+        def __init__(self):
+                self.variable_in_class_a = "I am a variable in ClassA."
 
-a = str(input('ваша почта - '))
-b = random.randint(100, 999)
+class ClassB:
+        def __init__(self, object_of_class_a):
+                self.object_of_class_a = object_of_class_a
 
-code_confirm.send_email_code(a, b)
+        def use_variable_from_class_a(self):
+                print(self.object_of_class_a.variable_in_class_a)
+
+
+
+
+
+
+
+
+
+ClassB(ClassA()).use_variable_from_class_a()

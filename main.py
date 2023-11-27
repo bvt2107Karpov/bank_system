@@ -1,12 +1,15 @@
 import customtkinter as ctk
 import tkinter.messagebox as tkmb
 from PIL import Image, ImageTk
+import time
 import sqlite3
 import random
 import code_confirm
 
 
-class Main:   
+class Main():
+    
+
     def start(self):
         # Выбор темы(светлая, темная, системная)
         ctk.set_appearance_mode("dark") 
@@ -32,24 +35,36 @@ class Main:
 
         self.button_register = ctk.CTkButton(master=self.app,text='Registration',command=Register().reg) 
         self.button_register.pack(pady=12,padx=10)
-
         self.app.mainloop()
 
 
+        
 
-    def main_page(self):       
+    #def skit(self):
+        a = 'TOXA'
+        sqlite_connection = sqlite3.connect('bank.db')
+        cursor = sqlite_connection.cursor()
+        cursor.execute("SELECT name FROM Accounts WHERE login=?", (a,))
+        skit_name = cursor.fetchone()
+
         self.app = ctk.CTk() 
         self.app.geometry("600x600")
         self.app.title("Bank System")
 
-        self.main_label = ctk.CTkLabel(master=self.app, image=self.main_img, text='Hello World')
+        self.main_label = ctk.CTkLabel(master=self.app, text='Hello, ' + (skit_name[0][0]))
         self.main_label.pack(pady=12,padx=10)
 
         self.app.mainloop()
 
 
-class Login:
+
+
+
+        
+
+class Login():
     def log(self):
+
         self.root = ctk.CTk()
         self.root.title("Bank")
 
@@ -85,13 +100,13 @@ class Login:
 
             if (_login[0])[0] == self.user_login.get() and (_password[0])[0] == self.user_password.get():
                 tkmb.showinfo("Login", "Login successful!")
-                Main().main_page()
-
+                self.root.destroy()
+                Main().skit()
             else:
                 tkmb.showerror("Login", "Login failed!")
 
 
-class Register:
+class Register():
     def reg(self):
         self.regis = ctk.CTk()
         self.regis.title("Bank")
