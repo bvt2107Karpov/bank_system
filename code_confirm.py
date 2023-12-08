@@ -1,12 +1,9 @@
 import smtplib as smtp
-import customtkinter as ctk
-import tkinter.messagebox as tkmb
-import random
-import sqlite3
+
 
 def send_email_code(dest_email, code):
-    email = 'email'
-    password = 'password'
+    email = 'forfaceit1441@yandex.ru'
+    password = 'EmiSSionS228!'
     subject = 'Your Code is'
     email_text = code
     message = 'From: {}\nTo: {}\nSubject: {}\n\n{}'.format(email,
