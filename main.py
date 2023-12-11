@@ -252,17 +252,15 @@ class Main():
     def history(self):
         self.root.destroy()
 
-        
-        
         self.rt = ctk.CTk()
         self.rt.title("History")
         self.rt.geometry("350x500")
 
         btn_to_main = ctk.CTkButton(self.rt, text="←", width=35, height=35, command=self.back_to_main)
         btn_to_main.pack(side=tk.LEFT, anchor=tk.NW)
-
-        self.lbl = ctk.CTkLabel(master=self.rt, text='History of transactions', font=ctk.CTkFont(family='Times', size=18))
-        self.lbl.pack(pady=12,padx=10)
+        
+        self.lb = ctk.CTkLabel(master=self.rt, text='History of transactions', font=ctk.CTkFont(family='Times', size=18))
+        self.lb.pack(pady=12,padx=10)
 
 
         self.rt.mainloop()
