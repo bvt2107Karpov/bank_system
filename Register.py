@@ -25,7 +25,7 @@ class Register():
         self.user_email = ctk.CTkEntry(master=self.regis,placeholder_text="Email") 
         self.user_email.pack(pady=12,padx=10)
 
-        self.user_email_confirm = ctk.CTkButton(master=self.regis, text='Confirm', command=self.create_account)
+        self.user_email_confirm = ctk.CTkButton(master=self.regis, text='Confirm', hover_color='purple', command=self.create_account)
         self.user_email_confirm.pack(pady=12,padx=10)
 
         self.regis.mainloop()
@@ -59,7 +59,7 @@ class Register():
         self.user_code = ctk.CTkEntry(master=self.conf,placeholder_text="Your code") 
         self.user_code.pack(pady=12,padx=10)
 
-        self.user_code_confirm = ctk.CTkButton(master=self.conf, text='Confirm', command=self.acc_confirm)
+        self.user_code_confirm = ctk.CTkButton(master=self.conf, text='Confirm',  hover_color='purple',command=self.acc_confirm)
         self.user_code_confirm.pack(pady=12,padx=10)
 
         self.conf.mainloop()
@@ -91,7 +91,7 @@ class Register():
         self.user_passdword = ctk.CTkEntry(master=self.full_conf,placeholder_text="Your password", show="*") 
         self.user_passdword.pack(pady=12,padx=10)
 
-        self.okk = ctk.CTkButton(master=self.full_conf,text='Confirm', command=self.full_reg_final)
+        self.okk = ctk.CTkButton(master=self.full_conf,text='Confirm', hover_color='purple', command=self.full_reg_final)
         self.okk.pack(pady=12,padx=10)
 
         self.full_conf.mainloop()

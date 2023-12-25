@@ -24,14 +24,15 @@ class Start():
         self.main_img = self.main_img.resize((150, 150))
         self.main_img = ImageTk.PhotoImage(self.main_img)
 
-        self.main_label = ctk.CTkLabel(master=self.Root, image=self.main_img)
+        self.main_label = ctk.CTkLabel(master=self.Root, text="", image=self.main_img)
         self.main_label.pack(pady=12,padx=10)
 
-        self.button_login = ctk.CTkButton(master=self.Root,text='Login',command=self.start_log) 
+        self.button_login = ctk.CTkButton(master=self.Root,text='Login', hover_color='purple',command=self.start_log) 
         self.button_login.pack(pady=12,padx=10)
 
-        self.button_register = ctk.CTkButton(master=self.Root,text='Registration',command=self.start_reg) 
+        self.button_register = ctk.CTkButton(master=self.Root,text='Registration', hover_color='purple',command=self.start_reg) 
         self.button_register.pack(pady=12,padx=10)
+
         self.Root.mainloop()
 
 

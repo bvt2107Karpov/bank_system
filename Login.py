@@ -17,20 +17,20 @@ class Login():
         self.root = ctk.CTk()
         self.root.title("Bank")
 
-        back = ctk.CTkButton(self.root, text="←", width=35, height=35, command=self._back)
+        back = ctk.CTkButton(master=self.root, text="←", width=35, height=35, hover_color='purple', command=self._back)
         back.pack(side=tk.LEFT, anchor=tk.NW)
 
         self.lbl = ctk.CTkLabel(master=self.root, text='Log in')
         self.lbl.pack(pady=12,padx=10)
 
 
-        self.user_login = ctk.CTkEntry(master=self.root,placeholder_text="Username") 
+        self.user_login = ctk.CTkEntry(master=self.root, placeholder_text="Username") 
         self.user_login.pack(pady=12,padx=10) 
 
         self.user_password = ctk.CTkEntry(master=self.root,placeholder_text="Password",show="*") 
         self.user_password.pack(pady=12,padx=10)
 
-        self.button_login = ctk.CTkButton(master=self.root,text='Login',command=self.check) 
+        self.button_login = ctk.CTkButton(master=self.root,text='Login', hover_color='purple',command=self.check) 
         self.button_login.pack(pady=12,padx=10)
 
         self.checkbox = ctk.CTkCheckBox(master=self.root,text='Remember Me') 
@@ -46,7 +46,8 @@ class Login():
             cursor = sqlite_connection.cursor()   
 
             cursor.execute("SELECT login FROM Accounts WHERE login=?", (self.user_login.get(),))           
-            self._login = cursor.fetchall()       
+            self._login = cursor.fetchall()
+            print(self._login)       
 
             cursor.execute("SELECT password FROM Accounts WHERE login=?", (self.user_login.get(),))            
             self._password = cursor.fetchall()
@@ -83,7 +84,7 @@ class Login():
 
         self.skit_root.mainloop()
 
-        main.Main().main(self._login)
+        main.Main(self._login).main()
         
         
 
