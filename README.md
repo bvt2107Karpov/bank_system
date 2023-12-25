@@ -9,6 +9,6 @@ Before using the banking system, make sure you have Python installed on your com
 After installing Python, you can clone the repository and install the necessary dependencies.
 
 ```
-git clone https://github.com/username/banking-system.git
+git clone https://github.com/bvt2107Karpov/bank_system
 cd banking-system
 pip install -r requirements.txt
