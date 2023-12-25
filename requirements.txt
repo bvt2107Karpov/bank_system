@@ -1,0 +1,6 @@
+smtplib
+customtkinter
+tkinter
+sqlite3
+pillow
+PIL
